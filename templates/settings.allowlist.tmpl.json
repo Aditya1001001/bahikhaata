@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read($WS/**)",
+      "Edit($WS/expense-log/**)",
+      "Edit($WS/out/**)",
+      "Edit($WS/state.json)",
+      "Write($WS/expense-log/**)",
+      "Write($WS/out/**)",
+      "Bash($PY -I $PLUGIN/pipeline/*)",
+      "Bash(LOG=* $PY -I $PLUGIN/pipeline/add.py *)",
+      "Bash(BATCH=* $PY -I $PLUGIN/pipeline/publish_review.py *)",
+      "Bash(BATCH=* RUN_EXISTS=1 $PY -I $PLUGIN/pipeline/publish_review.py *)",
+      "Bash($PY -I $PLUGIN/scripts/doctor.py*)",
+      "Bash(mkdir -p $WS/expense-log/*)",
+      "Bash(mkdir -p $WS/out/*)",
+      "Bash(date *)",
+      "ArtifactData",
+      "PushNotification",
+      "Agent"
+    ],
+    "deny": [
+      "Read($WS/splitwise-mcp/.env)",
+      "Edit($WS/splitwise-mcp/.env)"
+    ]
+  }
+}

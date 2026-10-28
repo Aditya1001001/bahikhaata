@@ -1,0 +1,32 @@
+{
+  "_help": "Your personal Bahikhaata settings. /bahikhaata-setup fills this in; never share it. Keys and passwords never go here (Splitwise keys live in <mcp_dir>/.env).",
+  "workspace": "~/Bahikhaata",
+  "me": {"name": "Kabir", "full_name": "Kabir Shah", "aliases": [], "splitwise_id": 0},
+  "flatmate": {"name": "Zoya", "aliases": ["Zoya R Khan"], "splitwise_id": 0},
+  "splitwise": {"group_id": 0, "group_name": "Flat 4B", "mcp_dir": "~/Bahikhaata/splitwise-mcp"},
+  "currency": "INR",
+  "home": {"label": "Home", "keywords": ["sunrise apartments", "hsr layout"], "city": "Bangalore"},
+  "rent": {"mode": "off", "_modes": "off | i_pay_all | each_pays_own_half", "landlord_pattern": "", "pays_for": "previous_month"},
+  "default_split": "50/50",
+  "always_shared_notes": ["Rent, utilities, broadband, house help", "Groceries and household items delivered home"],
+  "sources": {
+    "fold": false,
+    "bank_csv": false,
+    "gmail": {"enabled": false, "address": ""},
+    "swiggy": false,
+    "instamart": false
+  },
+  "connector_tools": {
+    "_help": "Exact tool names found during setup (they include a per-user server id). Used for the permission allowlist.",
+    "fold_list_transactions": "",
+    "gmail_search_threads": "",
+    "gmail_get_thread": "",
+    "gmail_get_message": "",
+    "swiggy_get_food_orders": "",
+    "instamart_get_orders": ""
+  },
+  "review_page": "",
+  "history_start": "",
+  "notify": {"weekday": "Sunday", "big_auto_add": 2000},
+  "setup": {"workspace": false, "splitwise": false, "sources": false, "rules": false, "page": false, "auto_add": false, "first_run": false, "schedule": false}
+}

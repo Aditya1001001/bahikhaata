@@ -1,0 +1,7 @@
+{
+  "name": "bahikhaata",
+  "version": "0.1.0",
+  "description": "Find the expenses you share with a flatmate in your payments and receipts, review them on your own private page, and add the approved ones to Splitwise.",
+  "author": {"name": "Bahikhaata"},
+  "keywords": ["splitwise", "expenses", "flatmate", "india", "fold", "gmail"]
+}

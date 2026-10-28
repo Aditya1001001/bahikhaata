@@ -1,0 +1,27 @@
+{
+  "_help": "Your classification rules. Setup writes this as <workspace>/rules.json. Only you change auto_add and caps; Claude may propose new 'learned' rules but asks first. Patterns are case-insensitive regex.",
+
+  "auto_add": [],
+  "caps": {"default": 3000, "rent": 60000},
+  "auto_categories": {
+    "instamart_home": {"label": "Instamart orders delivered home", "builtin": true},
+    "rent": {"label": "Missing rent months (from your rent setting)", "builtin": true},
+    "licious": {"label": "Licious meat orders", "match": "licious|delightful gourmet", "desc": "Grocery - Licious", "cat": "Groceries"},
+    "firstclub": {"label": "FirstClub grocery orders", "match": "firstclub", "desc": "Groceries - FirstClub", "cat": "Groceries"}
+  },
+
+  "grocery_merchants": ["licious", "delightful gourmet", "firstclub", "bigbasket", "zepto", "blinkit", "dmart"],
+  "household_items": ["toilet", "odou?r", "diffuser", "cleaner", "detergent", "dish ?wash", "garbage", "tissue", "kitchen", "lighter",
+                      "laundry", "shower filter", "cartridge", "atta", "\\brice\\b", "olive oil", "grinder", "torch", "mop", "broom",
+                      "sofa clean", "deep clean", "pest control", "plumb", "electrician", "curtain",
+                      "broadband", "fibernet", "airtel xstream", "bescom", "electricity", "gas cylinder", "water can"],
+  "personal_items": ["toner", "moistur", "sunscreen", "shampoo", "facial", "face wash", "lip balm", "body wash", "serum", "creme",
+                     "belt", "\\bbook\\b", "kindle", "screen protector", "tripod", "headphone", "earbuds", "charger"],
+  "eating_out_merchants": ["bakery", "cafe", "pizza", "restaurant", "bistro", "brew"],
+  "never_expenses": ["investment", "groww", "zerodha", "clearing corp", "mutual fund", "self transfer", "cred club", "slice",
+                     "credit card payment", "card bill", "amazon pay balance"],
+  "never_add": [],
+  "learned": [],
+  "food_for_two_from": 600,
+  "eating_out_from": 800
+}

@@ -1,0 +1,15 @@
+{
+  "_help": "What a fictional user answers during onboarding. Used by scripts/dry_run.py. All names, places and numbers are made up.",
+  "me": {"name": "Kabir", "full_name": "Kabir Shah", "aliases": [], "splitwise_id": 1001},
+  "flatmate": {"name": "Zoya", "aliases": ["Zoya R Khan"], "splitwise_id": 1002},
+  "splitwise": {"group_id": 5001, "group_name": "Flat 4B"},
+  "home": {"label": "Home", "keywords": ["sunrise apartments"], "city": "Bangalore"},
+  "rent": {"mode": "each_pays_own_half", "landlord_pattern": "meera joshi", "pays_for": "previous_month"},
+  "sources": {"fold": true, "bank_csv": false, "gmail": {"enabled": true, "address": "kabir@example.com"}, "swiggy": false, "instamart": false},
+  "connector_tools": {"fold_list_transactions": "mcp__fold-fake__list_transactions", "gmail_search_threads": "mcp__gmail-fake__search_threads",
+                      "gmail_get_thread": "mcp__gmail-fake__get_thread", "gmail_get_message": "mcp__gmail-fake__get_message"},
+  "never_add": [{"match": "furlenco|cityfurnish", "why": "Furniture rental prepayment - covered by the monthly Furniture Rental entries"}],
+  "learned": [{"match": "cult ?fit", "tag": "likely personal", "why": "Gym is personal (you said)"}],
+  "auto_add": ["instamart_home", "rent", "licious"],
+  "page_decisions": {"Garbage bags": "shared", "Dishwash": ["shared", "50/50@199"], "Paris Panini": "personal", "ACT Fibernet": "shared", "BLUE TOKAI CAFE": "personal"}
+}

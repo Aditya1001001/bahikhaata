@@ -1,0 +1,16 @@
+{
+  "users": [{"id": 1001, "first_name": "Kabir", "last_name": "Rao"}, {"id": 1002, "first_name": "Zoya", "last_name": "Menon"}, {"id": 1003, "first_name": "Meera", "last_name": "Shah"}],
+  "groups": [
+    {"id": 0, "name": "Non-group expenses", "members": []},
+    {"id": 5001, "name": "Flat 4B", "members": [{"id": 1001, "first_name": "Kabir", "last_name": "Rao"}, {"id": 1002, "first_name": "Zoya", "last_name": "Menon"}]},
+    {"id": 5002, "name": "Goa trip", "members": [{"id": 1001, "first_name": "Kabir", "last_name": "Rao"}, {"id": 1002, "first_name": "Zoya", "last_name": "Menon"}, {"id": 1003, "first_name": "Meera", "last_name": "Shah"}]}
+  ],
+  "expenses": [
+    {"id": 800001, "group_id": 5001, "description": "Maid - Oct 2026", "cost": "4000.0", "date": "2026-10-13T12:00:00Z", "payment": false, "deleted_at": null,
+     "users": [{"user_id": 1001, "user": {"id": 1001, "first_name": "Kabir"}, "paid_share": "0.0", "owed_share": "2000.0"}, {"user_id": 1002, "user": {"id": 1002, "first_name": "Zoya"}, "paid_share": "4000.0", "owed_share": "2000.0"}]},
+    {"id": 800002, "group_id": 5001, "description": "Dinner - Truffles", "cost": "900.0", "date": "2026-10-18T12:00:00Z", "payment": false, "deleted_at": null,
+     "users": [{"user_id": 1001, "user": {"id": 1001, "first_name": "Kabir"}, "paid_share": "0.0", "owed_share": "450.0"}, {"user_id": 1002, "user": {"id": 1002, "first_name": "Zoya"}, "paid_share": "900.0", "owed_share": "450.0"}]},
+    {"id": 800003, "group_id": 5001, "description": "Rent - Aug 2026", "cost": "45000.0", "date": "2026-09-05T12:00:00Z", "payment": false, "deleted_at": null,
+     "users": [{"user_id": 1001, "user": {"id": 1001, "first_name": "Kabir"}, "paid_share": "22500.0", "owed_share": "22500.0"}, {"user_id": 1002, "user": {"id": 1002, "first_name": "Zoya"}, "paid_share": "22500.0", "owed_share": "22500.0"}]}
+  ]
+}

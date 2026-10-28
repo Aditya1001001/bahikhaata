@@ -1,0 +1,16 @@
+{
+  "name": "bahikhaata",
+  "owner": {
+    "name": "Bahikhaata"
+  },
+  "plugins": [
+    {
+      "name": "bahikhaata",
+      "source": "./",
+      "description": "Shared-expense tracking with Splitwise, set up in about 15 minutes."
+    }
+  ],
+  "metadata": {
+    "description": "Bahikhaata: find shared flat expenses in your payments and add the approved ones to Splitwise."
+  }
+}

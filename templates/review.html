@@ -1,0 +1,494 @@
+<title>Bahikhaata Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Kalam:wght@400;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one bound register — cloth spine band on top, index tabs, then a ruled sheet with a red margin rule; entries are ledger lines, decisions are rubber stamps. */
+:root{
+  /* printed register: aged paper, vermilion cloth, blue fountain-pen ink, violet stamp-pad */
+  --paper:#EADBB9; --sheet:#F7F0DF; --ink:var(--black-ink); --ink-2:#3F3A31; --ink-3:var(--pencil); --rule:#D6C9AA; --rule-soft:rgba(60,40,10,.07);
+  /* writing inks: black (print), blue (pen), red (baaki / margin), green (darj / saanjha), pencil */
+  --black-ink:#1C1A17; --pen:#1F3A93; --red-ink:#B3261E; --green-ink:#185C31; --pencil:#57524A;
+  --margin:var(--red-ink); --cloth:#A3241E; --cloth-ink:#FBEFD9; --cloth-ink-2:#EED3B8; /* secondary print on the cloth: solid, never faded */ --stamp-shared:var(--green-ink); --stamp-personal:var(--black-ink);
+  --haldi:var(--red-ink); --haldi-soft:rgba(179,38,30,.10); --control:#FCF8EE; --focus:rgba(181,48,42,.35); --lamp:transparent;
+  --display:"Tiro Devanagari Hindi","Iowan Old Style",Georgia,serif;
+  --hand:"Kalam","Bradley Hand","Segoe Print",cursive;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;
+  --margin-x:64px; --gutter-x:calc(var(--margin-x) + 18px); /* text clears the red margin rule */
+  /* desk: brown leather blotter (pebbled grain + soft sheen) under the register */
+  --desk:#5A3520; --desk-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 1.15'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); --desk-pebble:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='turbulence' baseFrequency='.16' numOctaves='1' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .85 0 0 0 0 .7 1.4 0 0 0 -.55'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)' opacity='.16'/%3E%3C/svg%3E");
+  --desk-light:radial-gradient(ellipse 80% 60% at 30% 18%,rgba(255,214,160,.22),rgba(255,214,160,0) 70%);
+  --desk-edge:radial-gradient(ellipse 120% 90% at 50% 40%,rgba(20,10,4,0) 55%,rgba(20,10,4,.45) 100%);
+  --stitch:rgba(236,205,160,.42);
+  /* paper: fibre, faint mottling, foxed corners and a darker outer edge; very low alpha so ink stays crisp */
+  --paper-fibre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .35' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 -1.4 0 .78'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23f)' opacity='.22'/%3E%3C/svg%3E"); --paper-mottle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .38 0 0 0 0 .12 0 0 0 -2.2 1.25'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23m)' opacity='.10'/%3E%3C/svg%3E");
+  --paper-age:radial-gradient(ellipse 30% 22% at 100% 100%,rgba(150,100,30,.10),transparent 70%),radial-gradient(ellipse 22% 16% at 0 100%,rgba(150,100,30,.07),transparent 70%),linear-gradient(90deg,rgba(120,80,20,.06),transparent 4%,transparent 94%,rgba(120,80,20,.08));
+  --sheet-glow:linear-gradient(transparent,transparent);
+  color-scheme:light;
+}
+/* night: the same register under a warm desk lamp, never an inverted dark theme */
+:root.lamp{
+  --paper:#2A1C10; --sheet:#E3CC9C; --ink:#241A10; --ink-2:#4A3920; --ink-3:#5E4A2C; --rule:#CDB88E; --rule-soft:rgba(70,40,5,.09);
+  --pen:#1F2F78; --cloth:#8E2018; --cloth-ink:#F6E2BE; --cloth-ink-2:#E6C7A6; --control:#EBD7AC;
+  --paper:#0E0A07; --sheet:#F0E3C6; --control:#F7EDD6; --lamp:none;
+  /* night: same leather, lit only inside the overhead pool; edges near-black */
+  --desk:#080503; --stitch:rgba(236,205,160,.22);
+  --desk-light:radial-gradient(ellipse 62% 58% at 58% 36%,rgba(118,72,40,.95),rgba(70,40,20,.55) 45%,rgba(8,5,3,0) 80%);
+  --desk-edge:linear-gradient(transparent,transparent);
+}
+/* wood variant (walnut, long grain) */
+:root[data-desk="wood"]{--desk:#6B4226;--desk-pebble:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .09' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .12 0 0 0 0 .06 0 0 0 0 .02 0 1.9 0 0 -.75'/%3E%3C/filter%3E%3Crect width='600' height='300' filter='url(%23w)'/%3E%3C/svg%3E")}
+:root.lamp[data-desk="wood"]{--desk:#080503}
+/* overhead light, straight down: a warm pool centred on the page, falling off into the dark desk */
+.night-light{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .6s}
+:root.lamp .night-light{opacity:1}
+.night-light::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 58% 36%,rgba(255,196,120,.22) 0%,rgba(255,176,90,.10) 38%,rgba(0,0,0,0) 62%);mix-blend-mode:soft-light}
+.night-light::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 64% at 58% 36%,rgba(8,5,2,0) 0%,rgba(8,5,2,.18) 45%,rgba(8,5,2,.62) 78%,rgba(8,5,2,.82) 100%)}
+@media (max-width:700px){.night-light::after{background:radial-gradient(ellipse 100% 64% at 55% 36%,rgba(8,5,2,0) 0%,rgba(8,5,2,.14) 50%,rgba(8,5,2,.55) 85%,rgba(8,5,2,.72) 100%)}}
+.toast{z-index:10}
+.toast[hidden]{display:none}
+/* green lamp base seen from straight above, partly out of frame */
+.lampbase{position:fixed;top:-150px;right:-150px;width:220px;height:220px;z-index:6;pointer-events:none;opacity:0;transition:opacity .6s}
+.lampbase{opacity:1}
+@media (max-width:700px){.lampbase{width:150px;height:150px;top:-100px;right:-100px}}
+/* pull chain: the light switch */
+.chain{position:fixed;top:0;right:calc(max(0px,(100vw - 880px)/2) + 44px);z-index:7;display:flex;flex-direction:column;align-items:center;gap:6px}
+.spine-top{padding-right:84px}
+/* below 1080px the chain and lamp base hang from the top of the page and scroll away, so they never sit over entries */
+@media (max-width:1079px){.chain,.lampbase{position:absolute}}
+@media (min-width:1080px){.chain{right:max(84px,calc((100vw - 880px)/2 - 72px))}.spine-top{padding-right:0}}
+@media (max-width:699px){.chain{right:56px}.spine-top{padding-right:0}.brand,.spine-top .hero{padding-right:104px}.spine-top .hero{flex-basis:100%;text-align:left}}
+@media (max-width:420px){.acts .stamp{padding:0 10px}.line .acts{gap:6px}.line{grid-template-columns:var(--margin-x) minmax(0,1fr)}.line .a{grid-column:2;grid-row:2;text-align:left;justify-self:start}.line .acts{grid-column:2}}
+.chain button{appearance:none;border:0;background:transparent;cursor:pointer;padding:0 14px 6px;display:flex;flex-direction:column;align-items:center;min-width:44px;touch-action:none}
+.chain .cord{width:2px;height:74px;background:repeating-linear-gradient(180deg,#B8963E 0 3px,#7A5F1E 3px 5px);border-radius:1px;transition:height .18s cubic-bezier(.23,1,.32,1)}
+.chain .bead{width:16px;height:22px;border-radius:7px 7px 9px 9px;background:radial-gradient(circle at 35% 30%,#F1D78A,#B8963E 55%,#6E5418);box-shadow:0 2px 4px rgba(0,0,0,.35)}
+.chain button:active .cord,.chain button.pulled .cord{height:90px}
+.chain button:focus-visible .bead{outline:2px solid var(--margin);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.chain .cord{transition:none}}
+body{background:var(--paper)}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{margin:0;min-height:100vh;background-color:var(--desk);background-image:var(--desk-edge),var(--desk-pebble),var(--desk-grain),var(--desk-light);background-attachment:fixed;color:var(--ink);font:15px/1.5 var(--body);transition:background-color .6s}
+button,input,select{font:inherit;color:inherit}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+@media (min-width:700px){.wrap{padding-inline:32px}}
+/* tooled border with a saddle stitch, pressed into the leather around the register */
+@media (min-width:960px){.wrap::before{content:"";position:absolute;inset:-14px 10px 28px;border:1px dashed var(--stitch);border-radius:6px;box-shadow:0 0 0 6px rgba(0,0,0,.10),inset 0 0 0 6px rgba(0,0,0,.10);pointer-events:none}}
+
+/* cloth spine */
+.spine{background:var(--cloth);color:var(--cloth-ink);padding-block:20px 0;margin-inline:-16px;padding-inline:16px;
+  background-image:linear-gradient(rgba(0,0,0,0) 60%,rgba(0,0,0,.14)),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,transparent 1px 3px),var(--paper-fibre)}
+@media (min-width:700px){.spine{margin-inline:0;padding-inline:32px;border-radius:4px 4px 0 0}}
+.spine-top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s4);flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand h1{font-family:var(--display);font-weight:400;font-size:29px;line-height:1.1;margin:0;letter-spacing:-.01em}
+.brand h1 .dev{font-size:19px;color:var(--cloth-ink-2);margin-left:8px}
+.brand .sub{font-size:14px;color:var(--cloth-ink-2)}
+.hero{text-align:right;min-width:0}
+.hero .label{font-size:14px;color:var(--cloth-ink-2)}
+.hero .value{font-family:var(--hand);font-weight:700;font-size:38px;line-height:1.05}
+.hero .meta{font-size:12px;color:var(--cloth-ink-2)}
+.tabs{display:flex;gap:4px;margin-top:20px}
+.tab{appearance:none;border:0;background:rgba(0,0,0,.18);color:var(--cloth-ink);padding:10px 16px 12px;min-height:44px;border-radius:6px 6px 0 0;cursor:pointer;font-weight:500;font-size:14px;display:flex;gap:8px;align-items:baseline;transition:background-color .15s}
+.tab:hover{background:rgba(0,0,0,.28)}
+.tab[aria-selected="true"]{background:var(--sheet);color:var(--ink)}
+.tab .count{font-family:var(--hand);font-size:16px;font-weight:700;color:inherit}
+.tab:focus-visible{outline:2px solid var(--cloth-ink);outline-offset:-4px}
+
+/* the ruled sheet */
+.sheet{background:var(--sheet);margin-inline:-16px;padding-inline:16px;padding-block:var(--s6) var(--s8);position:relative;min-height:60vh;
+  background-image:var(--sheet-glow),var(--paper-age),var(--paper-mottle),var(--paper-fibre);background-attachment:fixed,local,local,local;
+  /* the pages beneath: three thin stacked edges, then the shadow on the leather */
+  box-shadow:0 1px 0 var(--rule-soft),0 2px 0 -1px #EDE3CB,0 4px 0 -2px #E2D5B6,0 6px 0 -3px #D6C6A2,0 18px 30px -12px rgba(30,15,5,.55)}
+@media (min-width:700px){.sheet{margin-inline:0;border-radius:0 0 4px 4px}}
+/* night: the lamp warms the paper and falls off gently; the paper never goes dark */
+:root.lamp{--sheet-glow:radial-gradient(ellipse 50% 46% at 58% 36%,rgba(255,206,130,.34) 0%,rgba(255,196,118,.22) 50%,rgba(255,190,110,0) 72%),radial-gradient(ellipse 62% 58% at 58% 36%,rgba(40,22,6,0) 62%,rgba(40,22,6,.24) 100%)}
+:root.lamp .sheet{box-shadow:0 1px 0 var(--rule-soft),0 2px 0 -1px #D9C9A4,0 4px 0 -2px #CDBB93,0 6px 0 -3px #C0AD84,0 18px 30px -12px rgba(0,0,0,.7)}
+.sheet::before{content:"";position:absolute;top:0;bottom:0;left:calc(16px + var(--margin-x) - 2px);width:2px;background:var(--margin);opacity:.7}
+@media (max-width:520px){:root{--margin-x:62px}}
+.pagehead{padding-left:var(--gutter-x);display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s4)}
+.pagehead h2{font-family:var(--display);font-weight:400;font-size:23px;margin:0;text-wrap:balance}
+.pagehead .hint{font-size:14px;color:var(--ink-3);text-wrap:pretty}
+.eyebrow{font-size:14px;color:var(--ink-2);font-weight:500}
+
+/* ledger lines */
+.group{margin-top:var(--s6)}
+.group-h{display:grid;grid-template-columns:var(--margin-x) 1fr auto;align-items:end;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.group-h .eyebrow{grid-column:2;padding-left:18px}
+.group-h .sum{font-family:var(--hand);font-size:15px;color:var(--ink-3)}
+.line{border-bottom-style:dotted;display:grid;grid-template-columns:var(--margin-x) minmax(0,1fr) auto;column-gap:18px;padding-block:var(--s3);border-bottom:1px solid var(--rule);align-items:start}
+.line .d{font-family:var(--hand);font-size:17px;white-space:nowrap;line-height:1.15;color:var(--pen);text-align:right;padding-right:var(--s3)}
+.line .d small{display:block;font-family:var(--body);font-size:12px;color:var(--ink-3)}
+.line .who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.line .m{font-family:var(--hand);font-weight:700;font-size:19px;line-height:1.2;color:var(--pen);overflow-wrap:anywhere}
+.line .x{font-family:var(--hand);font-size:16px;line-height:1.4;color:var(--ink-2);overflow-wrap:anywhere;text-wrap:pretty}
+.line .why{font-family:var(--hand);font-size:15px;line-height:1.4;color:var(--ink-3);text-wrap:pretty}
+.line .a{font-family:var(--hand);font-weight:700;color:var(--pen);font-size:18px;text-align:right;white-space:nowrap;padding-top:1px}
+.line.pending .a{box-shadow:inset 0 -2px 0 var(--haldi)}
+.line.focused{background:rgba(31,58,147,.045)}
+/* a finished entry is ruled through once in pen, the way a munim strikes a settled line: still readable underneath */
+.line.done .m,.line.done .x{text-decoration:line-through;text-decoration-color:var(--pen);text-decoration-thickness:1.5px;text-decoration-skip-ink:none}
+.acts{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center;margin-top:var(--s2)}
+.stamp{appearance:none;background:transparent;min-height:40px;padding:0 14px;border:2px solid currentColor;border-radius:4px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .12s cubic-bezier(.23,1,.32,1),background-color .12s}
+.stamp span[lang]{font-family:var(--display);font-size:16px;letter-spacing:0;text-transform:none}.stamp small{font-size:12px;letter-spacing:.08em}
+.stamp.s{color:var(--stamp-shared)} .stamp.p{color:var(--stamp-personal)}
+.stamp:hover{background:var(--rule-soft)}
+.stamp:active{transform:scale(.97)}
+.stamp[aria-pressed="true"]{transform:rotate(-2deg);background:color-mix(in srgb,currentColor 9%,transparent)}
+.stamp[aria-pressed="true"]:active{transform:rotate(-2deg) scale(.97)}
+.stamp:focus-visible,.chip:focus-visible,.btn:focus-visible,.cell:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--margin);outline-offset:2px}
+.stamp[disabled]{opacity:.4;cursor:default}
+.mark{display:inline-block;border:2px solid currentColor;border-radius:3px;padding:1px 7px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transform:rotate(-3deg)}
+.mark.s{color:var(--stamp-shared)} .mark.p{color:var(--stamp-personal)} .mark.k{color:var(--ink-3)} .mark.w{color:var(--haldi)}
+.save{font-size:12px;color:var(--ink-3)} .save.err{color:var(--margin);font-weight:600}
+.editor{grid-column:2/-1;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--s3);margin-top:var(--s3);padding:var(--s3);background:transparent;border:1px solid var(--rule);border-radius:4px}
+.editor label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-3);font-weight:500;min-width:0}
+.editor input,.editor select{text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);background:var(--control);border:1px solid var(--rule);border-radius:4px;min-height:40px;padding:0 10px;width:100%}
+.chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chips .lbl{font-size:13px;color:var(--ink-3);font-weight:500;margin-right:4px}
+.chip{appearance:none;min-height:32px;padding:0 12px;border:1px solid var(--rule);background:var(--control);border-radius:2px;font-family:var(--hand);font-size:16px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--stamp-shared);color:var(--stamp-shared);box-shadow:inset 0 0 0 1px var(--stamp-shared)}
+.owe{grid-column:1/-1;font-family:var(--hand);font-size:16px;color:var(--ink-2)}
+.owe b{font-weight:700}
+@media (max-width:560px){.editor{grid-template-columns:1fr}}
+
+.foot{margin-top:var(--s6);padding-left:var(--gutter-x);display:flex;flex-direction:column;gap:var(--s3)}
+.totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--s3) var(--s6);padding-block:var(--s3);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
+.totals div{display:flex;flex-direction:column}
+.totals .k{font-size:13px;color:var(--ink-3);font-weight:500}
+.totals .v{font-family:var(--hand);font-weight:700;color:var(--pen);font-size:22px;line-height:1.2}
+.btn{appearance:none;min-height:44px;padding:0 18px;border-radius:4px;border:2px solid var(--margin);background:var(--margin);color:#FFF8EE;font-weight:600;cursor:pointer;transition:transform .12s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)} .btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--margin)}
+.row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px}
+.kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--rule);border-bottom-width:2px;border-radius:3px;padding:0 5px;color:var(--ink-3)}
+.helpline{font-size:12px;color:var(--ink-3)}
+@media (hover:none){.helpline{display:none}}
+
+/* calendar */
+.cal-nav{display:flex;gap:var(--s2);align-items:center}
+.iconbtn{appearance:none;min-width:44px;min-height:44px;border:1px solid var(--rule);background:var(--control);border-radius:4px;cursor:pointer;font-size:18px;line-height:1}
+.iconbtn[disabled]{opacity:.35;cursor:default}
+.grid-wrap{padding-left:var(--gutter-x)}
+.dow,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.dow div{font-size:13px;color:var(--ink-3);padding:6px 6px;font-weight:500}
+.grid{border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.cell{appearance:none;text-align:left;background:transparent;border:0;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);min-height:84px;padding:6px 6px 10px;display:flex;flex-direction:column;gap:4px;cursor:pointer;position:relative;min-width:0}
+.cell:hover{background:var(--rule-soft)}
+.cell[aria-pressed="true"]{background:var(--rule-soft);box-shadow:inset 0 0 0 2px var(--margin)}
+.cell.out{cursor:default;background:transparent}
+.cell .dn{font-family:var(--hand);font-size:19px;line-height:1;color:var(--pen)}
+.cell .sp{font-family:var(--hand);font-size:13px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell .bar{margin-top:auto;height:6px;border-radius:3px;background:var(--rule-soft);display:flex;overflow:hidden}
+.cell .bar i{display:block;height:100%}
+.cell .bar .l{background:var(--stamp-shared)} .cell .bar .p{background:var(--haldi)}
+.cell .kdot{position:absolute;top:8px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.cell.today .dn{color:var(--margin)}
+@media (max-width:520px){.cell{min-height:64px}.cell .sp{display:none}}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);font-size:12px;color:var(--ink-3);padding-left:var(--gutter-x);margin-top:var(--s3)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:14px;height:6px;border-radius:3px;display:inline-block}
+
+.empty{padding-left:var(--gutter-x);padding-block:var(--s6);color:var(--ink-2);display:flex;flex-direction:column;gap:var(--s3);max-width:62ch}
+.empty h3{font-family:var(--display);font-weight:400;font-size:23px;margin:0;color:var(--ink)}
+.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.steps .done{color:var(--ink-3);text-decoration:line-through}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:4px;font-size:14px;display:flex;gap:12px;align-items:center;max-width:calc(100% - 32px)}
+.toast button{appearance:none;background:transparent;border:0;color:#F1D78A;font-weight:600;cursor:pointer;min-height:32px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.stamp[aria-pressed="true"],.mark{transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="spine">
+    <div class="spine-top">
+      <div class="brand">
+        <span class="sub" id="who">Khata</span>
+        <h1>Bahikhaata<span class="dev" lang="hi">बही खाता</span></h1>
+      </div>
+      <div class="hero" id="hero" hidden>
+        <div class="label" id="heroLabel">Saathi ke naam baaki</div>
+        <div class="value num" id="heroValue">—</div>
+        <div class="meta" id="heroMeta"></div>
+      </div>
+
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Register sections">
+      <button class="tab" role="tab" id="t-hisaab" aria-selected="true" aria-controls="v-hisaab">Baaki <span class="count" id="openCount" hidden></span></button>
+      <button class="tab" role="tab" id="t-cal" aria-selected="false" aria-controls="v-cal">Roznamcha</button>
+      <button class="tab" role="tab" id="t-darj" aria-selected="false" aria-controls="v-darj">Darj</button>
+    </nav>
+  </header>
+
+  <main class="sheet">
+    <section id="v-hisaab" role="tabpanel" aria-labelledby="t-hisaab">
+      <div class="pagehead">
+        <div><h2 id="hTitle">Is hafte ki entries</h2></div>
+        <div class="hint" id="hHint">Har entry par thappa lagaiye: saanjha ya apna. Saanjha wali agle din Splitwise mein chadh jaati hain.</div>
+      </div>
+      <div id="queue"></div>
+      <div class="foot" id="qFoot" hidden>
+        <div class="totals" id="qTotals"></div>
+        <label class="check" for="restMine"><input type="checkbox" id="restMine"> Jo bacha hai, sab apne naam</label>
+        <div class="row"><button class="btn" id="closeBtn">Hisaab darj karo</button><span class="helpline" id="keys">Keys: ↑ ↓ to move, S saanjha, A apna, ⌫ to clear, ⌘Z to undo, ⌘↵ to darj</span></div>
+      </div>
+    </section>
+
+    <section id="v-cal" role="tabpanel" aria-labelledby="t-cal" hidden>
+      <div class="pagehead">
+        <div><h2 id="calTitle">—</h2></div>
+        <div class="cal-nav"><button class="iconbtn" id="prevM" aria-label="Previous month">‹</button><button class="iconbtn" id="nextM" aria-label="Next month">›</button></div>
+      </div>
+      <div class="grid-wrap">
+        <div class="dow" aria-hidden="true"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
+        <div class="grid" id="grid" role="grid" aria-label="Days of the month"></div>
+      </div>
+      <div class="legend"><span><i class="sw" style="background:var(--stamp-shared)"></i>Darj (in Splitwise)</span><span><i class="sw" style="background:var(--haldi)"></i>Baaki (to review)</span><span><i class="sw" style="background:var(--ink-3);width:7px;height:7px"></i><span class="fm">Saathi</span> logged something</span></div>
+      <div class="foot"><div class="totals" id="mTotals"></div></div>
+      <div id="dayView"></div>
+    </section>
+
+    <section id="v-darj" role="tabpanel" aria-labelledby="t-darj" hidden>
+      <div class="pagehead">
+        <div><h2>Apne aap chadhi entries</h2></div>
+        <div class="hint">Jo categories aapne auto-add ke liye chuni hain, woh seedhe khate mein. "Hata do" dabaane par kal Splitwise se hat jaayegi.</div>
+      </div>
+      <div id="darj"></div>
+    </section>
+  </main>
+</div>
+<div class="night-light" aria-hidden="true"></div>
+<svg class="lampbase" viewBox="0 0 220 220" aria-hidden="true">
+  <defs>
+    <radialGradient id="lbG" cx="40%" cy="38%" r="65%"><stop offset="0" stop-color="#3E8A5E"/><stop offset=".55" stop-color="#1F5A3A"/><stop offset="1" stop-color="#0E2E1D"/></radialGradient>
+    <radialGradient id="lbB" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#F3D88E"/><stop offset=".5" stop-color="#B8903A"/><stop offset="1" stop-color="#5E4512"/></radialGradient>
+    <radialGradient id="lbS" cx="50%" cy="50%" r="50%"><stop offset=".6" stop-color="rgba(0,0,0,.45)"/><stop offset="1" stop-color="rgba(0,0,0,0)"/></radialGradient>
+  </defs>
+  <circle cx="110" cy="116" r="104" fill="url(#lbS)"/>
+  <circle cx="110" cy="110" r="96" fill="url(#lbB)"/>
+  <circle cx="110" cy="110" r="88" fill="url(#lbG)"/>
+  <circle cx="110" cy="110" r="64" fill="none" stroke="rgba(243,216,142,.35)" stroke-width="2"/>
+  <circle cx="110" cy="110" r="22" fill="url(#lbB)"/>
+  <circle cx="110" cy="110" r="10" fill="#4A370E"/>
+  <ellipse cx="86" cy="82" rx="30" ry="14" fill="rgba(255,255,255,.12)" transform="rotate(-30 86 82)"/>
+</svg>
+<div class="chain"><button id="pull" aria-label="Pull to switch the light"><span class="cord"></span><span class="bead"></span></button></div>
+<div class="toast" id="toast" hidden><span id="toastMsg"></span><button id="toastUndo" hidden>Wapas lo</button></div>
+
+<script>
+const CATS=["Groceries","Dining out","Household supplies","Cleaning","Maintenance","Furniture","Rent","Electricity","General"];
+const SPLITS=["50/50","60/40","70/30","80/20"];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const inr=(n,dp)=>"₹"+Number(n||0).toLocaleString("en-IN",{minimumFractionDigits:0,maximumFractionDigits:dp??2});
+const dmy=s=>{const d=new Date(s+"T00:00:00");return{day:d.getDate(),mon:d.toLocaleDateString("en-IN",{month:"short"}),wd:d.toLocaleDateString("en-IN",{weekday:"short"})}};
+let db=null, canWrite=true, runs=[], rowsByRun={}, autoByRun={}, months={}, summary=null;
+let focusKey=null, curMonth=null, selDay=null, saveState={}, unsubs={};
+let flatmate="saathi";
+
+function theyOwe(amount,split){
+  split=split||"50/50";
+  if(split.startsWith("RENT@"))return 0;
+  if(/^[A-Za-z]+=/.test(split))return Number(split.split("=")[1])||0;
+  const [sp,part]=split.split("@"); const cost=part?Number(part):Number(amount); const mine=Number(sp.split("/")[0]);
+  return isFinite(mine)?cost*(100-mine)/100:cost/2;
+}
+let toastT, toastUndoFn=null;
+function toast(msg,undo){$("#toastMsg").textContent=msg;$("#toastUndo").hidden=!undo;toastUndoFn=undo||null;$("#toast").hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").hidden=true,undo?5000:2200)}
+$("#toastUndo").addEventListener("click",()=>{if(toastUndoFn)toastUndoFn();$("#toast").hidden=true});
+
+/* ---------- lamp at night ---------- */
+let lightPref="auto"; try{lightPref=localStorage.getItem("bk-light")||"auto"}catch(e){}
+/* a pull holds until the next dusk (7pm) or dawn (6am); after that the clock decides again */
+function lastTurn(now){const t=[-1,0].flatMap(d=>[6,19].map(h=>{const x=new Date(now);x.setDate(x.getDate()+d);x.setHours(h,0,0,0);return x})).filter(x=>x<=now);return Math.max(...t)}
+const isNight=()=>{const now=new Date(),h=now.getHours(),clock=h>=19||h<6;const [v,at]=lightPref.split("@");if((v==="day"||v==="night")&&Number(at)>=lastTurn(now))return v==="night";return clock};
+function lamp(){const n=isNight();document.documentElement.classList.toggle("lamp",n);$("#pull").setAttribute("aria-label",n?"Raat. Pull the chain for daylight":"Din. Pull the chain to switch on the lamp")}
+function setLight(v){lightPref=v;try{localStorage.setItem("bk-light",v)}catch(e){}lamp()}
+$("#pull").addEventListener("click",()=>{const b=$("#pull");b.classList.add("pulled");setTimeout(()=>b.classList.remove("pulled"),180);setLight((isNight()?"day":"night")+"@"+Date.now())});
+lamp(); setInterval(lamp,5*60*1000);
+if(!/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent)){const k=document.getElementById("keys");if(k)k.textContent=k.textContent.replaceAll("⌘","Ctrl+")}
+
+/* ---------- tabs ---------- */
+const TABS=["hisaab","cal","darj"];
+function showTab(t){TABS.forEach(x=>{$("#t-"+x).setAttribute("aria-selected",x===t);$("#v-"+x).hidden=x!==t});try{localStorage.setItem("bk-tab",t)}catch(e){}if(t==="cal")renderCal()}
+TABS.forEach(t=>$("#t-"+t).addEventListener("click",()=>showTab(t)));
+document.querySelector(".tabs").addEventListener("keydown",e=>{if(!["ArrowLeft","ArrowRight"].includes(e.key))return;const i=TABS.findIndex(t=>$("#t-"+t).getAttribute("aria-selected")==="true");const n=TABS[(i+(e.key==="ArrowRight"?1:2))%3];showTab(n);$("#t-"+n).focus()});
+
+/* ---------- writes ---------- */
+async function write(path,data,key){
+  if(key){saveState[key]="saving";paintSave(key)}
+  const once=()=>db.doc(path).update(data);
+  try{await once();if(key){saveState[key]="ok";paintSave(key)}}catch(e){
+    if(e&&(e.code==="unavailable"||e.code==="resource_exhausted")){await new Promise(r=>setTimeout(r,800+Math.random()*1200));try{await once();if(key){saveState[key]="ok";paintSave(key)}return}catch(e2){e=e2}}
+    if(key){saveState[key]="err";paintSave(key)}
+    if(e&&e.code==="invalid_argument"){canWrite=false;renderQueue();toast("This view can't save changes")}else toast("Couldn't save that. Try again.");
+  }
+}
+const saveLabel=k=>({saving:"Likh rahe…",ok:"Likh liya",err:"Nahi likha gaya. Phir dabaiye"})[saveState[k]]||"";
+function paintSave(k){const el=document.getElementById("sv-"+k);if(el){el.textContent=saveLabel(k);el.className="save"+(saveState[k]==="err"?" err":"")}}
+
+/* ---------- hisaab (queue) ---------- */
+function openRuns(){return runs.filter(r=>r.status!=="added")}
+function queueRows(){return openRuns().flatMap(r=>(rowsByRun[r.id]||[]).map(x=>({...x,_run:r.id}))).filter(x=>!x.added_id).sort((a,b)=>(a.date+a.id).localeCompare(b.date+b.id))}
+function decide(x,dec){
+  const prev=x.decision??null; const next=prev===dec?null:dec;
+  x.decision=next; renderQueue();
+  write(`runs/${x._run}/rows/${x._key}`,{decision:next,decided_at:next?new Date().toISOString():null},x._key);
+  if(next) toast(next==="shared"?"Saanjha khate mein":"Apne naam",()=>{x.decision=prev;renderQueue();write(`runs/${x._run}/rows/${x._key}`,{decision:prev},x._key)});
+}
+function renderQueue(){
+  const rows=queueRows(), open=rows.filter(x=>!x.decision);
+  const oc=$("#openCount"); oc.hidden=!open.length; oc.textContent=open.length;
+  const box=$("#queue");
+  if(!db){box.innerHTML=emptyHTML("Open this page signed in","Your register lives in your claude.ai account. Sign in to see your entries.");$("#qFoot").hidden=true;return}
+  if(!runs.length){box.innerHTML=setupHTML();$("#qFoot").hidden=true;return}
+  if(!rows.length){box.innerHTML=emptyHTML("Hisaab barabar","Kuch baaki nahi. Munim ji roz subah nayi entries chadhate hain, aur Itwaar ko khabar bhejte hain.");$("#qFoot").hidden=true;$("#hTitle").textContent="Sab barabar";return}
+  $("#hTitle").textContent=open.length?`${open.length} ${open.length===1?"entry":"entries"} baaki`:"Sab par thappa lag gaya";
+  const groups={}; rows.forEach(x=>{(groups[x._run]=groups[x._run]||[]).push(x)});
+  if(!focusKey||!rows.find(r=>r._key===focusKey)) focusKey=(open[0]||rows[0])._key;
+  box.innerHTML=Object.entries(groups).map(([rid,list])=>{
+    const run=runs.find(r=>r.id===rid)||{};
+    return `<div class="group"><div class="group-h"><span class="eyebrow">${esc(run.label||rid)}</span><span class="sum">${list.length} ${list.length===1?"entry":"entries"}</span></div>${list.map(lineHTML).join("")}</div>`}).join("");
+  const shared=rows.filter(x=>x.decision==="shared");
+  $("#qFoot").hidden=false;
+  $("#qTotals").innerHTML=tot("Saanjha",shared.length)+tot(`${flatmate} ke naam`,inr(shared.reduce((s,x)=>s+theyOwe(x.amount,x.d_split||x.split),0)))+tot("Baaki",open.length);
+  const allClosed=openRuns().every(r=>r.status==="ready");
+  $("#closeBtn").disabled=!canWrite||allClosed; $("#closeBtn").textContent=allClosed?"Darj ho gaya. Munim ji kal chadhayenge":"Hisaab darj karo";
+}
+const tot=(k,v)=>`<div><span class="k">${esc(k)}</span><span class="v">${typeof v==="number"?v:esc(v)}</span></div>`;
+function lineHTML(x){
+  const k=esc(x._key), d=dmy(x.date), sp=x.d_split??x.split??"50/50", dsc=x.d_desc??x.desc??"", cat=x.d_cat??x.cat??"General";
+  const cls=["line",x.decision?"":"pending",x.decision==="personal"?"is-mine":"",x.decision?"done":"",x._key===focusKey?"focused":""].join(" ");
+  return `<article class="${cls}" data-k="${k}" tabindex="-1" aria-label="${esc(x.merchant)}, ${esc(inr(x.amount))}">
+    <div class="d">${d.day} ${esc(d.mon)}<small>${esc(d.wd)}</small></div>
+    <div class="who"><span class="m">${esc(x.merchant)}</span>${x.detail?`<span class="x">${esc(x.detail)}</span>`:""}${x.reason?`<span class="why">${esc(x.reason)}</span>`:""}</div>
+    <div class="a">${inr(x.amount)}</div>
+    <div class="acts">
+      <button class="stamp s" data-dec="shared" aria-pressed="${x.decision==="shared"}" ${canWrite?"":"disabled"}><span lang="hi">साझा</span> <small>Saanjha</small></button>
+      <button class="stamp p" data-dec="personal" aria-pressed="${x.decision==="personal"}" ${canWrite?"":"disabled"}><span lang="hi">अपना</span> <small>Apna</small></button>
+      <span class="save" id="sv-${k}">${saveLabel(x._key)}</span>
+    </div>
+    ${x.decision==="shared"?`<div class="editor">
+      <label for="d-${k}">Splitwise description<input id="d-${k}" type="text" data-f="d_desc" value="${esc(dsc)}"></label>
+      <label for="c-${k}">Category<select id="c-${k}" data-f="d_cat">${CATS.map(c=>`<option ${c===cat?"selected":""}>${c}</option>`).join("")}</select></label>
+      <div class="chips" role="group" aria-label="Split, you then ${esc(flatmate)}"><span class="lbl">Split you/${esc(flatmate)}</span>${SPLITS.map(c=>`<button class="chip" data-chip="${c}" aria-pressed="${sp.split("@")[0]===c}">${c}</button>`).join("")}
+        <label for="s-${k}" style="flex-direction:row;align-items:center;gap:6px">or<input id="s-${k}" type="text" data-f="d_split" value="${esc(sp)}" style="width:150px" aria-label="Custom split"></label></div>
+      <div class="owe">${esc(flatmate)} owes you <b>${inr(theyOwe(x.amount,sp))}</b>. Share part of it with <span class="num">50/50@190</span>, or a fixed amount with <span class="num">THEM=2996</span>.</div>
+    </div>`:""}
+  </article>`;
+}
+$("#queue").addEventListener("click",e=>{
+  const line=e.target.closest(".line"); if(!line)return; const x=queueRows().find(r=>r._key===line.dataset.k); if(!x)return;
+  focusKey=x._key;
+  const b=e.target.closest("button");
+  if(b&&b.dataset.dec){decide(x,b.dataset.dec);return}
+  if(b&&b.dataset.chip){const cur=x.d_split??x.split??"50/50";const part=cur.includes("@")?"@"+cur.split("@")[1]:"";x.d_split=b.dataset.chip+part;renderQueue();write(`runs/${x._run}/rows/${x._key}`,{d_split:x.d_split},x._key);return}
+});
+let pend=new Map();
+$("#queue").addEventListener("input",e=>{const f=e.target.dataset.f;if(!f)return;const line=e.target.closest(".line");const x=queueRows().find(r=>r._key===line.dataset.k);x[f]=e.target.value;const id=x._key+f;clearTimeout(pend.get(id));pend.set(id,setTimeout(()=>{write(`runs/${x._run}/rows/${x._key}`,{[f]:e.target.value},x._key);const o=line.querySelector(".owe b");if(o)o.textContent=inr(theyOwe(x.amount,x.d_split||x.split))},600))});
+/* familiar keys: arrows or j/k to move (Gmail), S/A stamp the letter on the button, Backspace clears, Cmd/Ctrl+Z undoes, Cmd/Ctrl+Enter closes */
+document.addEventListener("keydown",e=>{
+  if($("#v-hisaab").hidden||e.target.matches("input,select,textarea")||e.altKey)return;
+  const mod=e.metaKey||e.ctrlKey, k=e.key.toLowerCase();
+  if(mod&&k==="z"){if(toastUndoFn){e.preventDefault();toastUndoFn();toastUndoFn=null;$("#toast").hidden=true}return}
+  if(mod&&k==="enter"){if(!$("#closeBtn").disabled){e.preventDefault();$("#closeBtn").click()}return}
+  if(mod)return;
+  const rows=queueRows(); if(!rows.length)return; let i=rows.findIndex(r=>r._key===focusKey); if(i<0)i=0;
+  if(k==="j"||k==="arrowdown"){focusKey=rows[Math.min(i+1,rows.length-1)]._key}
+  else if(k==="k"||k==="arrowup"){focusKey=rows[Math.max(i-1,0)]._key}
+  else if(k==="s"||k==="a"||k==="m"){const x=rows[i];if(!canWrite)return;const dec=k==="s"?"shared":"personal";if(x.decision!==dec)decide(x,dec);const nx=rows.slice(i+1).find(r=>!r.decision);if(nx&&dec==="personal")focusKey=nx._key}
+  else if(k==="backspace"||k==="delete"){const x=rows[i];if(!canWrite)return;if(x.decision)decide(x,x.decision)}
+  else return;
+  e.preventDefault(); renderQueue(); const el=document.querySelector(`.line[data-k="${CSS.escape(focusKey)}"]`); if(el){el.scrollIntoView({block:"nearest"});el.focus({preventScroll:true})}
+});
+$("#closeBtn").addEventListener("click",async()=>{
+  $("#closeBtn").disabled=true; const rest=$("#restMine").checked;
+  if(rest){for(const x of queueRows().filter(r=>!r.decision)){await write(`runs/${x._run}/rows/${x._key}`,{decision:"personal",auto_personal:true,decided_at:new Date().toISOString()},x._key)}}
+  for(const r of openRuns()){await write(`runs/${r.id}`,{status:"ready",ready_at:new Date().toISOString(),rest_personal:rest})}
+  toast("Hisaab darj. Saanjha entries kal Splitwise mein chadhengi.");
+});
+
+/* ---------- empty / setup ---------- */
+function emptyHTML(h,p){return `<div class="empty"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`}
+function setupHTML(){
+  const s=(summary&&summary.setup)||{};
+  const step=(ok,t)=>`<li class="${ok?"done":""}">${esc(t)}</li>`;
+  return `<div class="empty"><h3>A fresh register</h3><p>Your munim (Claude, on your computer) fills this page. Once set up, it reads your payments every morning, adds the obvious shared ones to Splitwise, and leaves the rest here for you to stamp.</p>
+  <ol class="steps">${step(s.splitwise,"Connect Splitwise and pick the group you share with your flatmate")}${step(s.sources,"Connect where your payments show up: Fold or a bank, Gmail receipts")}${step(s.rules,"Tell the munim your household rules: home address, what's always shared")}${step(s.first_run,"Run the first hisaab")}</ol>
+  <p>Ask Claude: <em>“Set up Bahikhaata for me.”</em></p></div>`;
+}
+
+/* ---------- calendar ---------- */
+function monthKeys(){return Object.keys(months).sort()}
+function renderCal(){
+  const keys=monthKeys(); const grid=$("#grid");
+  if(!keys.length){$("#calTitle").textContent="No days yet";grid.innerHTML="";$("#mTotals").innerHTML="";$("#dayView").innerHTML=emptyHTML("Nothing on the calendar yet","After the first run, each day shows what was shared and whether it's in Splitwise.");return}
+  if(!curMonth||!months[curMonth])curMonth=keys[keys.length-1];
+  const m=months[curMonth], [y,mo]=curMonth.split("-").map(Number);
+  $("#calTitle").textContent=new Date(y,mo-1,1).toLocaleDateString("en-IN",{month:"long",year:"numeric"});
+  $("#prevM").disabled=keys.indexOf(curMonth)<=0; $("#nextM").disabled=keys.indexOf(curMonth)>=keys.length-1;
+  const first=new Date(y,mo-1,1), lead=(first.getDay()+6)%7, n=new Date(y,mo,0).getDate(), today=new Date().toISOString().slice(0,10);
+  let html=""; for(let i=0;i<lead;i++)html+=`<div class="cell out" aria-hidden="true"></div>`;
+  for(let d=1;d<=n;d++){
+    const key=`${curMonth}-${String(d).padStart(2,"0")}`, x=(m.days||{})[key];
+    const shared=x?(x.logged+x.pending):0, w=v=>shared?(v/shared*100):0;
+    html+=`<button class="cell${key===today?" today":""}" role="gridcell" data-day="${key}" aria-pressed="${key===selDay}" aria-label="${d} — ${shared?inr(shared,0)+" shared":"nothing shared"}${x&&x.pending?", "+inr(x.pending,0)+" to review":""}">
+      <span class="dn">${d}</span>${shared?`<span class="sp">${inr(shared,0)}</span>`:""}
+      ${x&&x.them?`<span class="kdot" title="${esc(flatmate)} logged ${inr(x.them,0)}"></span>`:""}
+      ${shared?`<span class="bar"><i class="l" style="width:${w(x.logged)}%"></i><i class="p" style="width:${w(x.pending)}%"></i></span>`:""}
+    </button>`;
+  }
+  grid.innerHTML=html;
+  const t=m.totals||{};
+  $("#mTotals").innerHTML=tot("Saanjha",inr((t.logged||0)+(t.pending||0),0))+tot("Darj",inr(t.logged,0))+tot("Baaki",inr(t.pending,0))+tot(`${flatmate} ne likha`,inr(t.them,0));
+  renderDay();
+}
+function renderDay(){
+  const box=$("#dayView"); const x=selDay&&months[curMonth]&&months[curMonth].days[selDay];
+  if(!selDay||!selDay.startsWith(curMonth)){box.innerHTML=`<p class="helpline" style="padding-left:var(--gutter-x);margin-top:16px">Kisi din par tap karke us din ka hisaab dekhiye.</p>`;return}
+  const d=dmy(selDay);
+  if(!x){box.innerHTML=`<div class="group"><div class="group-h"><span class="eyebrow">${d.wd}, ${d.day} ${d.mon}</span><span class="sum">no entries</span></div></div>`;return}
+  const MARK={L:'<span class="mark s">Darj</span>',P:'<span class="mark w">Baaki</span>',M:'<span class="mark p">Apna</span>',K:`<span class="mark k">${esc(flatmate)} ka</span>`};
+  box.innerHTML=`<div class="group"><div class="group-h"><span class="eyebrow">${d.wd}, ${d.day} ${d.mon}</span><span class="sum">${inr(x.logged+x.pending,0)} shared</span></div>${x.items.map(it=>`<div class="line${it[3]==="P"?"":" done"}"><div class="d">${it[3]==="K"?"":""}</div><div class="who"><span class="m">${esc(it[1])}</span><span>${MARK[it[3]]}</span></div><div class="a">${inr(it[2])}</div></div>`).join("")}</div>`;
+}
+$("#grid").addEventListener("click",e=>{const c=e.target.closest(".cell[data-day]");if(!c)return;selDay=selDay===c.dataset.day?null:c.dataset.day;renderCal()});
+$("#prevM").addEventListener("click",()=>{const k=monthKeys();curMonth=k[Math.max(0,k.indexOf(curMonth)-1)];selDay=null;renderCal()});
+$("#nextM").addEventListener("click",()=>{const k=monthKeys();curMonth=k[Math.min(k.length-1,k.indexOf(curMonth)+1)];selDay=null;renderCal()});
+
+/* ---------- darj ---------- */
+function renderDarj(){
+  const all=runs.flatMap(r=>(autoByRun[r.id]||[]).map(a=>({...a,_run:r.id}))).sort((a,b)=>b.date.localeCompare(a.date));
+  const box=$("#darj");
+  if(!all.length){box.innerHTML=emptyHTML("Nothing added automatically yet","When the munim finds a grocery order delivered home, a rent month with no entry, or another rule you approved, it's recorded here.");return}
+  box.innerHTML=`<div class="group">${all.map(a=>{const d=dmy(a.date);return `<div class="line${a.undo?" is-mine":" done"}"><div class="d">${d.day} ${esc(d.mon)}<small>${esc(d.wd)}</small></div><div class="who"><span class="m">${esc(a.desc)}</span><span class="x">${esc(a.rule)}. ${esc(flatmate)} owes ${inr(a.they_owe)}</span></div><div class="a">${inr(a.cost||a.amount)}</div><div class="acts"><button class="stamp p" data-undo="${esc(a._run)}|${esc(a._key)}" aria-pressed="${!!a.undo}" ${canWrite?"":"disabled"}>${a.undo?"Rehne do":"Hata do"}</button>${a.undo?'<span class="save">Kal hat jaayegi</span>':""}</div></div>`}).join("")}</div>`;
+}
+$("#darj").addEventListener("click",e=>{const b=e.target.closest("[data-undo]");if(!b)return;const [run,key]=b.dataset.undo.split("|");const a=(autoByRun[run]||[]).find(x=>x._key===key);a.undo=!a.undo;renderDarj();write(`runs/${run}/auto/${key}`,{undo:a.undo})});
+
+/* ---------- header ---------- */
+function renderHero(){
+  if(!summary)return; flatmate=summary.flatmate||flatmate; document.querySelectorAll(".fm").forEach(e=>e.textContent=flatmate);
+  $("#who").textContent=`${summary.flatmate||"saathi"} ka khata, ${summary.group||""}`;
+  if(typeof summary.balance==="number"){$("#hero").hidden=false;const b=summary.balance;$("#heroLabel").textContent=b>=0?`${summary.flatmate} ke naam baaki`:`Aapke naam baaki`;$("#heroValue").textContent=inr(Math.abs(b));$("#heroMeta").textContent=summary.as_of?`${new Date(summary.as_of).toLocaleDateString("en-IN",{day:"numeric",month:"short"})} tak`:""}
+}
+
+/* ---------- boot ---------- */
+function subRun(r){
+  if(unsubs[r.id])return;
+  const a=db.collection(`runs/${r.id}/rows`).onSnapshot(s=>{rowsByRun[r.id]=s.docs.map(d=>({...d.data(),_key:d.id}));renderQueue()},onErr);
+  const b=db.collection(`runs/${r.id}/auto`).onSnapshot(s=>{autoByRun[r.id]=s.docs.map(d=>({...d.data(),_key:d.id}));renderDarj()},onErr);
+  unsubs[r.id]=[a,b];
+}
+function onErr(e){if(e&&e.code==="revoked"){canWrite=false;renderQueue()}}
+try{const t=localStorage.getItem("bk-tab");if(TABS.includes(t))showTab(t)}catch(e){}
+renderQueue(); renderDarj();
+(async()=>{
+  db=await claude.use("db");
+  if(!db){renderQueue();return}
+  const user=await claude.use("user"); if(user){const c=await user.can("data.write");if(c===false)canWrite=false}
+  db.doc("summary/main").onSnapshot(s=>{summary=s.exists?s.data():null;renderHero();renderQueue();renderDarj();if(!$("#v-cal").hidden)renderCal()},onErr);
+  db.collection("months").onSnapshot(s=>{months={};s.docs.forEach(d=>months[d.id]=d.data());if(!$("#v-cal").hidden)renderCal()},onErr);
+  db.collection("runs").onSnapshot(s=>{runs=s.docs.map(d=>({...d.data(),id:d.id})).sort((a,b)=>(a.start||"").localeCompare(b.start||""));runs.forEach(r=>{if(r.status!=="added"||true)subRun(r)});renderQueue();renderDarj()},onErr);
+})();
+</script>

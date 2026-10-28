@@ -1,0 +1,13 @@
+email_id,date,sender,kind,merchant,order_id,items,amount,delivery_address,payment_method
+e01,2026-10-13T19:10:00Z,noreply@swiggy.in,instamart,Swiggy Instamart,IM1001,Milk x2 64; Atta 5kg x1 289; Eggs x1 96; Onions x1 191,640,"Flat 302, Sunrise Apartments, HSR Layout, Bangalore",UPI
+e02,2026-10-14T08:30:00Z,noreply@swiggy.in,instamart,Swiggy Instamart,IM1002,Protein bar x3 300,300,"Office Tower 3, Tech Park, Pune",UPI
+e03,2026-10-15T13:05:00Z,noreply@swiggy.in,food,Meghana Foods,SW2001,1 X Chicken Biryani,280,"Flat 302, Sunrise Apartments, HSR Layout, Bangalore",UPI
+e04,2026-10-18T20:40:00Z,noreply@swiggy.in,food,Truffles,SW2002,2 X Classic Burger; 2 X Fries,900,"Flat 302, Sunrise Apartments, HSR Layout, Bangalore",Axis CC XX0000
+e05,2026-10-16T21:00:00Z,noreply@zomato.com,food,Empire Restaurant,Z3001,1 X Ghee Rice,450,,UPI
+e06,2026-10-19T20:15:00Z,noreply@zomato.com,food,Paris Panini,Z3002,2 X Panini; 2 X Cold Coffee,780,,UPI
+e07,2026-10-17T11:00:00Z,auto-confirm@amazon.in,amazon,Amazon,402-0000001,Dishwash liquid 2L x1 199; Face wash x1 349,548,,Amazon Pay
+e08,2026-10-20T10:00:00Z,auto-confirm@amazon.in,amazon,Amazon,402-0000002,Garbage bags large x2 240,240,,Amazon Pay
+e09,2026-10-21T12:00:00Z,orders@licious.in,grocery,Licious,LC5001,Chicken curry cut x2 820,820,"Sunrise Apartments, HSR Layout",Axis CC XX0000
+e10,2026-10-21T12:01:00Z,alerts@axis.bank.in,bank_alert,DELIGHTFUL GOURMET,,axis_cc_debit DELIGHTFUL GOURMET,820,,Axis CC XX0000
+e11,2026-10-22T18:30:00Z,alerts@axis.bank.in,bank_alert,BLUE TOKAI CAFE,,axis_cc_debit BLUE TOKAI CAFE,1200,,Axis CC XX0000
+e12,2026-10-18T20:41:00Z,alerts@axis.bank.in,bank_alert,SWIGGY,,axis_cc_debit SWIGGY,900,,Axis CC XX0000
